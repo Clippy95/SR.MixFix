@@ -1,0 +1,11 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "z:\\repos\\sr.mixfix\\src\\camera.ixx",
+        "ProvidedModule": "camera",
+        "ImportedModules": [
+            "general"
+        ],
+        "ImportedHeaderUnits": []
+    }
+}

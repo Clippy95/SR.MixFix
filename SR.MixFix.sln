@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SR.MixFix", "SR.MixFix.vcxproj", "{B891DC42-94FA-476E-8AED-43EE4682DF45}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		SRTT-Release|x64 = SRTT-Release|x64
+		SRTT-Release|x86 = SRTT-Release|x86
+		SRTTR-Release|x64 = SRTTR-Release|x64
+		SRTTR-Release|x86 = SRTTR-Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.Debug|x64.ActiveCfg = Debug|x64
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.Debug|x64.Build.0 = Debug|x64
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.Debug|x86.ActiveCfg = Debug|Win32
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.Debug|x86.Build.0 = Debug|Win32
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRTT-Release|x64.ActiveCfg = SRTT-Release|x64
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRTT-Release|x64.Build.0 = SRTT-Release|x64
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRTT-Release|x86.ActiveCfg = SRTT-Release|Win32
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRTT-Release|x86.Build.0 = SRTT-Release|Win32
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRTTR-Release|x64.ActiveCfg = SRTTR-Release|x64
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRTTR-Release|x64.Build.0 = SRTTR-Release|x64
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRTTR-Release|x86.ActiveCfg = SRTTR-Release|Win32
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRTTR-Release|x86.Build.0 = SRTTR-Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {542ADE07-9443-4D6A-8CEC-5847407E11D5}
+	EndGlobalSection
+EndGlobal

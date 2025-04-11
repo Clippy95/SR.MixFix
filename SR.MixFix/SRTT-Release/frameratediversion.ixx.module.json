@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "SR.MixFix\\SRTT-Release\\frameratediversion.ixx.obj",
+            "outputs": [
+                "Z:\\repos\\SR.MixFix\\SR.MixFix\\SRTT-Release\\vc143.pdb",
+                "SR.MixFix\\SRTT-Release\\",
+                "Z:\\repos\\SR.MixFix\\SR.MixFix\\SRTT-Release\\frameratediversion.ixx.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "frameratediversion",
+                    "source-path": "z:\\repos\\sr.mixfix\\src\\frameratediversion.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "general"
+                }
+            ]
+        }
+    ]
+}

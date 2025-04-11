@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "SR.MixFix\\SRTT-Release\\general.ixx.obj",
+            "outputs": [
+                "Z:\\repos\\SR.MixFix\\SR.MixFix\\SRTT-Release\\vc143.pdb",
+                "SR.MixFix\\SRTT-Release\\",
+                "Z:\\repos\\SR.MixFix\\SR.MixFix\\SRTT-Release\\general.ixx.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "general",
+                    "source-path": "z:\\repos\\sr.mixfix\\src\\general.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

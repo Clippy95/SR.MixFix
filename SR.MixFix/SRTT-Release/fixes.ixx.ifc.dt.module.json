@@ -1,0 +1,11 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "z:\\repos\\sr.mixfix\\src\\fixes.ixx",
+        "ProvidedModule": "fixes",
+        "ImportedModules": [
+            "general"
+        ],
+        "ImportedHeaderUnits": []
+    }
+}

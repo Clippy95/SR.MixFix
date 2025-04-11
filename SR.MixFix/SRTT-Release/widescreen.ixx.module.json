@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "SR.MixFix\\SRTT-Release\\widescreen.ixx.obj",
+            "outputs": [
+                "Z:\\repos\\SR.MixFix\\SR.MixFix\\SRTT-Release\\vc143.pdb",
+                "SR.MixFix\\SRTT-Release\\",
+                "Z:\\repos\\SR.MixFix\\SR.MixFix\\SRTT-Release\\widescreen.ixx.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "widescreen",
+                    "source-path": "z:\\repos\\sr.mixfix\\src\\widescreen.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "general"
+                }
+            ]
+        }
+    ]
+}
