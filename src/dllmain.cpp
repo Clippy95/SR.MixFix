@@ -19,9 +19,23 @@ void SRTT_services() {
     Memory::VP::Patch<char>(pattern.get_first(0), 0xC3);
 #endif
 }
+void OpenConsole()
+{
 
+    AllocConsole();
+
+    FILE* fp;
+    freopen_s(&fp, "CONOUT$", "w", stdout);
+    freopen_s(&fp, "CONOUT$", "w", stderr);
+    freopen_s(&fp, "CONIN$", "r", stdin);
+
+    SetConsoleTitleA("Debug Console");
+
+}
 void start() {
-    
+#if _DEBUG
+    OpenConsole();
+#endif
     //auto pattern = hook::pattern("4C 8B DC 49 89 5B ? 55 49 8D AB");
     //game_init_stage1_hook = safetyhook::create_inline(pattern.get_first<void>(0),&game_init_stage1_hookF);
     CIniReader ini;

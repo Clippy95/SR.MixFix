@@ -13,19 +13,6 @@ SAFETYHOOK_NOINLINE void __cdecl FPSUncapHandler(float min, float max) {
 }
 class frameratediversion {
 public:
-    void OpenConsole()
-    {
-
-        AllocConsole();
-
-        FILE* fp;
-        freopen_s(&fp, "CONOUT$", "w", stdout);
-        freopen_s(&fp, "CONOUT$", "w", stderr);
-        freopen_s(&fp, "CONIN$", "r", stdin);
-
-        SetConsoleTitleA("Debug Console");
-
-    }
 
     frameratediversion() {
         MixFix::onAttach() += [this]() {
