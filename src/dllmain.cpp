@@ -24,7 +24,11 @@ void start() {
     
     //auto pattern = hook::pattern("4C 8B DC 49 89 5B ? 55 49 8D AB");
     //game_init_stage1_hook = safetyhook::create_inline(pattern.get_first<void>(0),&game_init_stage1_hookF);
+    CIniReader ini;
+#if SRTT
+    if (ini.ReadBoolean("Misc", "DisableMySteelportService", true))
     SRTT_services();
+#endif
     MixFix::onAttach().executeAll();
     
     auto pattern = hook::pattern("48 89 5C 24 ? 57 48 83 EC ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 44 24 ? E8 ? ? ? ? 0F B6 D8");
