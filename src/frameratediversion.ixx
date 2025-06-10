@@ -8,8 +8,19 @@ float frametime_30_divide_frametime() {
     return (1.f / 30.f) / *frametime;
 }
 static SafetyHookInline disable_FPS_cap;
-SAFETYHOOK_NOINLINE void __cdecl FPSUncapHandler(float min, float max) {
+SAFETYHOOK_NOINLINE void 
+#if SRTT
+__cdecl
+#else SRTTR
+__fastcall
+#endif
+FPSUncapHandler(float min, float max) {
+
+#if SRTT
     disable_FPS_cap.ccall(10.f, 0.0000099999997f);
+#else SRTTR
+    disable_FPS_cap.fastcall(10.f, 0.0000099999997f);
+#endif
 }
 class frameratediversion {
 public:
@@ -52,16 +63,21 @@ public:
                         });
                 }
             }
-#if SRTT
+
             if (ini.ReadBoolean("Fixes", "UncapFPS", true)) {
-                auto pattern = hook::pattern("F3 0F 10 44 24 ? F3 0F 10 4C 24 ? 0F 5A D0 0F 5A D9 66 0F 2F DA 76 ? F3 0F 11 05");
+#
+                auto fps_pattern = get_pattern("F3 0F 10 44 24 ? F3 0F 10 4C 24 ? 0F 5A D0 0F 5A D9 66 0F 2F DA 76 ? F3 0F 11 05","0F 2F C8 76 ? F3 0F 11 05 ? ? ? ? F3 0F 11 0D");
+                auto vint_pattern = get_pattern("75 ? A1 ? ? ? ? 8B F0 3B C3", "76 ? 48 8B 05 ? ? ? ? 48 8B D8");
                 //Memory::VP::Patch<char>(pattern.get_first(), 0xC3);
-                disable_FPS_cap = safetyhook::create_inline(pattern.get_first(), &FPSUncapHandler);
+                if(!fps_pattern.empty())
+                disable_FPS_cap = safetyhook::create_inline(fps_pattern.get_first(), &FPSUncapHandler);
                 // vint_document::process_all, if (frametime v1 <= 0.001), fixes menu slow down at FPS above 1000
-                pattern = hook::pattern("75 ? A1 ? ? ? ? 8B F0 3B C3");
-                Memory::VP::Nop(pattern.get_first(), 2);
+                if(!vint_pattern.empty())
+                Memory::VP::Nop(vint_pattern.get_first(), 2);
+                if(disable_FPS_cap.enabled())
+                    //FPSUncapHandler(0.f,0.f);
             }
-#endif
+
              };
     }
 } frameratediversion;

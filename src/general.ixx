@@ -3,10 +3,28 @@ module;
 
 #include <vector>
 #include <functional>
-
+#include "framework.h"
 
 export module general;
 
+export template<typename... Args>
+auto get_pattern(Args&&... patterns) {
+    static_assert(sizeof...(patterns) >= 1 && sizeof...(patterns) <= 2,
+        "Must provide 1 or 2 patterns");
+
+    auto pattern_tuple = std::make_tuple(std::forward<Args>(patterns)...);
+
+    if constexpr (sizeof...(patterns) == 1) {
+        return hook::pattern(std::get<0>(pattern_tuple));
+    }
+    else {
+#ifdef SRTT
+        return hook::pattern(std::get<0>(pattern_tuple));
+#else // SRTTR
+        return hook::pattern(std::get<1>(pattern_tuple));
+#endif
+}
+}
 
 export class MixFix
 {
