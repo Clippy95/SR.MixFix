@@ -75,7 +75,7 @@ public:
                 if(!vint_pattern.empty())
                 Memory::VP::Nop(vint_pattern.get_first(), 2);
                 if(disable_FPS_cap.enabled())
-                    //FPSUncapHandler(0.f,0.f);
+                    FPSUncapHandler(0.f,0.f);
             }
 
              };
