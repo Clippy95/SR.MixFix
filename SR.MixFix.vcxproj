@@ -35,6 +35,7 @@
     <ClCompile Include="src\fixes.ixx" />
     <ClCompile Include="src\frameratediversion.ixx" />
     <ClCompile Include="src\general.ixx" />
+    <ClCompile Include="src\loose_files.ixx" />
     <ClCompile Include="src\widescreen.ixx" />
   </ItemGroup>
   <ItemGroup>
