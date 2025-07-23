@@ -20,7 +20,7 @@ public:
 			CIniReader ini;
 
 
-			if(ini.ReadBoolean("QOL","LooseFiles",true)) {
+			if(ini.ReadBoolean("QOL","ImproveLooseFiles",true)) {
 				auto pattern = hook::pattern("40 57 48 83 EC ? 48 C7 44 24 ? ? ? ? ? 48 89 5C 24 ? 48 89 74 24 ? 41 0F B6 F0");
 				search_files = safetyhook::create_inline(pattern.get_first(), &search_files_hook);
 
