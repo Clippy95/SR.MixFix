@@ -1,11 +1,26 @@
 {
-    "Version": "1.1",
-    "Data": {
-        "Source": "z:\\repos\\sr.mixfix\\src\\fixes.ixx",
-        "ProvidedModule": "fixes",
-        "ImportedModules": [
-            "general"
-        ],
-        "ImportedHeaderUnits": []
-    }
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "SR.MixFix\\SRTT-Release\\fixes.obj",
+            "outputs": [
+                "SR.MixFix\\SRTT-Release\\fixes.ixx.ifc.dt.module.json",
+                "SR.MixFix\\SRTT-Release\\fixes.ixx.ifc.dt.d.json",
+                "SR.MixFix\\SRTT-Release\\fixes.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "fixes",
+                    "source-path": "z:\\repos\\sr.mixfix\\src\\fixes.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "general"
+                }
+            ]
+        }
+    ]
 }

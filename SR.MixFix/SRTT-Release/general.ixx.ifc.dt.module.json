@@ -1,9 +1,22 @@
 {
-    "Version": "1.1",
-    "Data": {
-        "Source": "z:\\repos\\sr.mixfix\\src\\general.ixx",
-        "ProvidedModule": "general",
-        "ImportedModules": [],
-        "ImportedHeaderUnits": []
-    }
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "SR.MixFix\\SRTT-Release\\general.obj",
+            "outputs": [
+                "SR.MixFix\\SRTT-Release\\general.ixx.ifc.dt.module.json",
+                "SR.MixFix\\SRTT-Release\\general.ixx.ifc.dt.d.json",
+                "SR.MixFix\\SRTT-Release\\general.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "general",
+                    "source-path": "z:\\repos\\sr.mixfix\\src\\general.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": []
+        }
+    ]
 }

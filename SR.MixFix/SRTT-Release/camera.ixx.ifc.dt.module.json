@@ -1,11 +1,26 @@
 {
-    "Version": "1.1",
-    "Data": {
-        "Source": "z:\\repos\\sr.mixfix\\src\\camera.ixx",
-        "ProvidedModule": "camera",
-        "ImportedModules": [
-            "general"
-        ],
-        "ImportedHeaderUnits": []
-    }
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "SR.MixFix\\SRTT-Release\\camera.obj",
+            "outputs": [
+                "SR.MixFix\\SRTT-Release\\camera.ixx.ifc.dt.module.json",
+                "SR.MixFix\\SRTT-Release\\camera.ixx.ifc.dt.d.json",
+                "SR.MixFix\\SRTT-Release\\camera.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "camera",
+                    "source-path": "z:\\repos\\sr.mixfix\\src\\camera.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "general"
+                }
+            ]
+        }
+    ]
 }

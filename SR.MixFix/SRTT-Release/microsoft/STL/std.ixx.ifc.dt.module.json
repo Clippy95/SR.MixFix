@@ -1,9 +1,22 @@
 {
-    "Version": "1.1",
-    "Data": {
-        "Source": "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.40.33807\\modules\\std.ixx",
-        "ProvidedModule": "std",
-        "ImportedModules": [],
-        "ImportedHeaderUnits": []
-    }
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "SR.MixFix\\SRTT-Release\\microsoft\\STL\\std.obj",
+            "outputs": [
+                "SR.MixFix\\SRTT-Release\\microsoft\\STL\\std.ixx.ifc.dt.module.json",
+                "SR.MixFix\\SRTT-Release\\microsoft\\STL\\std.ixx.ifc.dt.d.json",
+                "SR.MixFix\\SRTT-Release\\microsoft\\STL\\std.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "std",
+                    "source-path": "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.44.35207\\modules\\std.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": []
+        }
+    ]
 }
