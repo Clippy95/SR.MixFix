@@ -8,7 +8,7 @@ public:
 		MixFix::onAttach() += []() {
 			CIniReader ini;
 			if (ini.ReadBoolean("Graphics", "DisableBlackBars", true)) {
-#if SRTTR
+#if SRTTR || SRIV_HV
 				auto pattern = hook::pattern("C6 05 ? ? ? ? ? 84 C9 74 ? F3 0F 10 05");
 #else SRTT
 				auto pattern = hook::pattern("0F 57 C0 C6 05 ? ? ? ? ? F3 0F 11 05 ? ? ? ? C7 05");

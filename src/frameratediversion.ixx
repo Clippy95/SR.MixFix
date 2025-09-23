@@ -29,7 +29,7 @@ public:
         MixFix::onAttach() += [this]() {
             CIniReader ini;
             if (ini.ReadBoolean("Fixes", "FixEngineAudioFPS", true)) {
-#if SRTTR
+#if SRTTR || SRIV_HV
                 auto pattern = hook::pattern("F3 0F 11 15 ? ? ? ? F3 0F 5E 15");
 #else SRTT
                 auto pattern = hook::pattern("D9 05 ? ? ? ? 83 C4 ? D9 1C 24 E8 ? ? ? ? 83 C4 ? E8");
@@ -43,20 +43,20 @@ public:
 
                     
                        
-#if SRTTR
+#if SRTTR || SRIV_HV
                     pattern = hook::pattern("48 8D 0D ? ? ? ? E8 ? ? ? ? 48 8B 83 ? ? ? ? 0F B7 88");
                     Memory::ReadOffsetValue<4>(instructionAddr + 4, frameTimeAddr);
-#else SRTT
+#elif SRTT
                     pattern = hook::pattern("B9 ? ? ? ? E8 ? ? ? ? 8B 86 ? ? ? ? 0F B7 88");
                     frameTimeAddr = *(uint32_t*)(instructionAddr + 2);
 #endif
                     frametime = (float*)(frameTimeAddr);
                     printf("frametime addr %p", frametime);
                     static auto engine_audio_fix = safetyhook::create_mid(pattern.get_first(0), [](SafetyHookContext& ctx) {
-#if _WIN64 && SRTTR
+#if _WIN64 && (SRTTR || SRIV_HV)
 
                         ctx.rdx = (ctx.rdx & UPPER_32BIT_MASK) | (int)(40 * frametime_30_divide_frametime());
-#else SRTT
+#elif SRTT
                         *(int*)(ctx.esp) = (int)(40 * frametime_30_divide_frametime());
                         //printf("SRTT %d \n", *(int*)(ctx.esp));
 #endif

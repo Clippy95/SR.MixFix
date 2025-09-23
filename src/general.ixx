@@ -9,21 +9,29 @@ export module general;
 
 export template<typename... Args>
 auto get_pattern(Args&&... patterns) {
-    static_assert(sizeof...(patterns) >= 1 && sizeof...(patterns) <= 2,
-        "Must provide 1 or 2 patterns");
-
+    static_assert(sizeof...(patterns) >= 1 && sizeof...(patterns) <= 3,
+        "Must provide 1, 2, or 3 patterns");
     auto pattern_tuple = std::make_tuple(std::forward<Args>(patterns)...);
 
     if constexpr (sizeof...(patterns) == 1) {
         return hook::pattern(std::get<0>(pattern_tuple));
     }
-    else {
+    else if constexpr (sizeof...(patterns) == 2) {
 #ifdef SRTT
         return hook::pattern(std::get<0>(pattern_tuple));
-#else // SRTTR
+#else // SRTTR or SRIV_HV
         return hook::pattern(std::get<1>(pattern_tuple));
 #endif
-}
+    }
+    else { // sizeof...(patterns) == 3
+#ifdef SRTT
+        return hook::pattern(std::get<0>(pattern_tuple));
+#elif SRTTR
+        return hook::pattern(std::get<1>(pattern_tuple));
+#else // SRIV_HV
+        return hook::pattern(std::get<2>(pattern_tuple));
+#endif
+    }
 }
 
 export class MixFix

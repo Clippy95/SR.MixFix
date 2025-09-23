@@ -9,6 +9,8 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		SRIV-HV-Release|x64 = SRIV-HV-Release|x64
+		SRIV-HV-Release|x86 = SRIV-HV-Release|x86
 		SRTT-Release|x64 = SRTT-Release|x64
 		SRTT-Release|x86 = SRTT-Release|x86
 		SRTTR-Release|x64 = SRTTR-Release|x64
@@ -19,6 +21,10 @@ Global
 		{B891DC42-94FA-476E-8AED-43EE4682DF45}.Debug|x64.Build.0 = Debug|x64
 		{B891DC42-94FA-476E-8AED-43EE4682DF45}.Debug|x86.ActiveCfg = Debug|Win32
 		{B891DC42-94FA-476E-8AED-43EE4682DF45}.Debug|x86.Build.0 = Debug|Win32
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRIV-HV-Release|x64.ActiveCfg = SRIV-HV-Release|x64
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRIV-HV-Release|x64.Build.0 = SRIV-HV-Release|x64
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRIV-HV-Release|x86.ActiveCfg = SRIV-HV-Release|Win32
+		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRIV-HV-Release|x86.Build.0 = SRIV-HV-Release|Win32
 		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRTT-Release|x64.ActiveCfg = SRTT-Release|x64
 		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRTT-Release|x64.Build.0 = SRTT-Release|x64
 		{B891DC42-94FA-476E-8AED-43EE4682DF45}.SRTT-Release|x86.ActiveCfg = SRTT-Release|Win32

@@ -9,17 +9,18 @@ public:
 	camera() {
 		MixFix::onAttach() += []() {
 		CIniReader ini;
-#if SRTTR
+#if SRTTR || SRIV_HV
 		if (ini.ReadBoolean("QOL", "BetterDriveCam", true)) {
 			auto pattern = hook::pattern("E8 ? ? ? ? 44 0F B6 C5 0F 28 CF");
 			if (!pattern.empty())
 			Memory::VP::Nop(pattern.get_first(), 5);
 		}
 #endif
+#if SRTTR || SRTT
 		if (ini.ReadBoolean("QOL", "BetterHandbrakeCam", false)) {
 #if SRTTR
 			auto pattern = hook::pattern("80 3D ? ? ? ? ? F3 0F 10 0A 0F 16 4A");
-#else SRTT
+#elif SRTT
 			auto pattern = hook::pattern("80 3D ? ? ? ? ? 74 ? 83 3D ? ? ? ? ? 75 ? 8B 4C 24");
 #endif
 			if (!pattern.empty()) {
@@ -35,6 +36,7 @@ public:
 				*allow_handbrake_cam = false;
 			}
 		}
+#endif
 			};
 	}
 
