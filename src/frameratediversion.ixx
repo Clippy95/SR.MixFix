@@ -65,15 +65,17 @@ public:
             }
 
             if (ini.ReadBoolean("Fixes", "UncapFPS", true)) {
-#
+
                 auto fps_pattern = get_pattern("F3 0F 10 44 24 ? F3 0F 10 4C 24 ? 0F 5A D0 0F 5A D9 66 0F 2F DA 76 ? F3 0F 11 05","0F 2F C8 76 ? F3 0F 11 05 ? ? ? ? F3 0F 11 0D");
-                auto vint_pattern = get_pattern("75 ? A1 ? ? ? ? 8B F0 3B C3", "76 ? 48 8B 05 ? ? ? ? 48 8B D8");
+                auto vint_pattern = get_pattern("75 ? A1 ? ? ? ? 8B F0 3B C3", "76 ? 48 8B 05 ? ? ? ? 48 8B D8","76 ? 48 8B 05 ? ? ? ? 48 8B D8 48 85 C0 74 ? 40 38 B3");
                 //Memory::VP::Patch<char>(pattern.get_first(), 0xC3);
                 if(!fps_pattern.empty())
                 disable_FPS_cap = safetyhook::create_inline(fps_pattern.get_first(), &FPSUncapHandler);
                 // vint_document::process_all, if (frametime v1 <= 0.001), fixes menu slow down at FPS above 1000
+
                 if(!vint_pattern.empty())
                 Memory::VP::Nop(vint_pattern.get_first(), 2);
+
                 if(disable_FPS_cap.enabled())
                     FPSUncapHandler(0.f,0.f);
             }

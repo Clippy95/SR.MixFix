@@ -48,6 +48,9 @@
     <ClCompile Include="src\InGameConfig.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\time_of_day.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\framework.h">

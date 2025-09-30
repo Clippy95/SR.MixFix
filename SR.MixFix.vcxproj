@@ -45,6 +45,7 @@
     <ClCompile Include="src\general.ixx" />
     <ClCompile Include="src\InGameConfig.ixx" />
     <ClCompile Include="src\loose_files.ixx" />
+    <ClCompile Include="src\time_of_day.ixx" />
     <ClCompile Include="src\widescreen.ixx" />
   </ItemGroup>
   <ItemGroup>

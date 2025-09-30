@@ -33,12 +33,13 @@ void OpenConsole()
 
 }
 void start() {
-#if _DEBUG || SRIV_HV
+    CIniReader ini;
+    if(ini.ReadBoolean("Misc","AllocConsole",false))
     OpenConsole();
-#endif
+
     //auto pattern = hook::pattern("4C 8B DC 49 89 5B ? 55 49 8D AB");
     //game_init_stage1_hook = safetyhook::create_inline(pattern.get_first<void>(0),&game_init_stage1_hookF);
-    CIniReader ini;
+
 #if SRTT
     if (ini.ReadBoolean("Misc", "DisableMySteelportService", true))
     SRTT_services();

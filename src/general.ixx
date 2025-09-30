@@ -34,6 +34,10 @@ auto get_pattern(Args&&... patterns) {
     }
 }
 
+export bool __cdecl ReturnTrue() {
+    return true;
+}
+
 export class MixFix
 {
 public:

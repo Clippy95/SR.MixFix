@@ -11,3 +11,9 @@
 #if _WIN64
 #define UPPER_32BIT_MASK 0xFFFFFFFF00000000ULL
 #endif
+
+#ifdef SRIV_HV
+#define SR4_BUILD SRIV_HV
+#else
+#define SR4_BUILD 0
+#endif

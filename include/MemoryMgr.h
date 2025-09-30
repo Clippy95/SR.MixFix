@@ -286,7 +286,7 @@ namespace Memory
 		{
 			DWORD		dwProtect;
 
-			VirtualProtect((void*)address, 4, PAGE_EXECUTE_READWRITE, &dwProtect);
+			VirtualProtect((void*)address, 4, PAGE_EXECUTE_READWRITE, &	dwProtect);
 			Memory::WriteOffsetValue<extraBytesAfterOffset>(address, var);
 			VirtualProtect((void*)address, 4, dwProtect, &dwProtect);
 		}
