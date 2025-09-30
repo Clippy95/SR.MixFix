@@ -3,7 +3,7 @@
 <p align="center">
 <img width="420" alt="MIXFIX" src="https://github.com/user-attachments/assets/8369cc63-edeb-4aa4-bee2-31831e42686d" />
 </p>
-MixFix is a runtime patch for Saints Row The Third (2011) and it's Remastered release (2020) aiming to provide fixes and enhancements.
+MixFix is a runtime patch for Saints Row The Third (2011) & it's Remastered release (2020) and Saints Row 4 Re-Elected (2022)  aiming to provide fixes and enhancements.
 
 
 Currently features:
