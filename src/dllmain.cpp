@@ -33,7 +33,7 @@ void OpenConsole()
 
 }
 void start() {
-#if _DEBUG
+#if _DEBUG || SRIV_HV
     OpenConsole();
 #endif
     //auto pattern = hook::pattern("4C 8B DC 49 89 5B ? 55 49 8D AB");
