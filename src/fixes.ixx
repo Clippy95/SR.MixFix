@@ -10,9 +10,9 @@ import InGameConfig;
 
 #if SRTT
 SafetyHookInline particle_get_box_def_h;
-void __fastcall particle_get_box_def(void* sp, void*, void* box)
+void __fastcall particle_get_box_def(uintptr_t sp, void*, void* box)
 {
-	if (reinterpret_cast<uintptr_t>(sp) == 0x40)
+	if (sp == 0x40)
 	{
 		printf("[crashfix] prevented crash: particle_get_box_def call with bad ptr\n");
 		return;
