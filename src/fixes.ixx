@@ -8,6 +8,75 @@ import general;
 import InGameConfig;
 #endif
 
+#if SRTT
+SafetyHookInline particle_get_box_def_h;
+void __fastcall particle_get_box_def(uintptr_t sp, void*, void* box)
+{
+	if (sp == 0x40)
+	{
+		printf("[crashfix] prevented crash: particle_get_box_def call with bad ptr\n");
+		return;
+	}
+
+	particle_get_box_def_h.thiscall(sp, box);
+}
+
+SafetyHookInline particle_unk1_h;
+void __fastcall particle_unk1(uintptr_t ecx, void* edx, void* a1, void* a2)
+{
+	if (ecx == 0)
+	{
+		printf("[crashfix] prevented crash: particle_unk1 call with ecx == nullptr\n");
+		return;
+	}
+
+	if (*reinterpret_cast<uintptr_t*>(ecx + 0xD8) == 0)
+	{
+		printf("[crashfix] prevented crash: particle_unk1 call with invalid object\n");
+		return;
+	}
+
+	particle_unk1_h.fastcall(ecx, edx, a1, a2);
+}
+
+SafetyHookInline particle_unk2_h;
+void __fastcall particle_unk2(uintptr_t ecx, void*, bool a1)
+{
+	if (ecx == 0)
+	{
+		printf("[crashfix] prevented crash: particle_unk2 call with ecx == nullptr\n");
+		return;
+	}
+
+	if (*reinterpret_cast<uintptr_t*>(ecx + 0xD8) == 0)
+	{
+		printf("[crashfix] prevented crash: particle_unk2 call with invalid object\n");
+		return;
+	}
+
+	particle_unk2_h.thiscall(ecx, a1);
+}
+
+SafetyHookInline particle_unk3_h;
+void __fastcall particle_unk3(uintptr_t ecx, void*)
+{
+	if (ecx == 0)
+	{
+		printf("[crashfix] prevented crash: particle_unk3 call with ecx == nullptr\n");
+		return;
+	}
+
+	if (*reinterpret_cast<uintptr_t*>(ecx + 0xD8) == 0)
+	{
+		printf("[crashfix] prevented crash: particle_unk3 call with invalid object\n");
+		return;
+	}
+
+	particle_unk3_h.thiscall(ecx);
+}
+#endif
+
+
 class fixes {
 public:
 	fixes() {
@@ -20,6 +89,21 @@ public:
 				
 				auto pattern = hook::pattern("A2 ? ? ? ? A1 ? ? ? ? 3B C3");
 				Memory::VP::Nop(pattern.get_first(), 5);
+			}
+
+			if (ini.ReadBoolean("Misc", "ParticleCrashFix", true))
+			{
+				auto p1 = hook::pattern("83 EC ? 56 8B F1 8B 44 24");
+				particle_get_box_def_h = safetyhook::create_inline(p1.get_first(0), particle_get_box_def);
+
+				auto p2 = hook::pattern("55 8B EC 83 E4 ? 81 EC ? ? ? ? 80 7D ? ? 53 56 8B F1");
+				particle_unk1_h = safetyhook::create_inline(p2.get_first(0), particle_unk1);
+
+				auto p3 = hook::pattern("53 8B 5C 24 ? 57 8B F9 38 9F");
+				particle_unk2_h = safetyhook::create_inline(p3.get_first(0), particle_unk2);
+
+				auto p4 = hook::pattern("A1 ? ? ? ? 8B 50 ? 53 56 8B F1");
+				particle_unk3_h = safetyhook::create_inline(p4.get_first(0), particle_unk3);
 			}
 #endif
 
