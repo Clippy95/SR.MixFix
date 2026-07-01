@@ -7,6 +7,20 @@ module;
 
 export module general;
 
+export template <typename T>
+struct base_array
+{
+    T* elt;
+    int array_size;
+    int num;
+};
+
+export template <typename T, int N>
+struct farray : base_array<T>
+{
+    T data[N];
+};
+
 export template<typename... Args>
 auto get_pattern(Args&&... patterns) {
     static_assert(sizeof...(patterns) >= 1 && sizeof...(patterns) <= 3,
