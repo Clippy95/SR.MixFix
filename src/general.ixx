@@ -48,6 +48,15 @@ auto get_pattern(Args&&... patterns) {
     }
 }
 
+export template <size_t count = 1, typename... Args>
+hook::pattern find_pattern(Args... args)
+{
+    hook::pattern pattern;
+    ((pattern = hook::pattern(args), !pattern.count_hint(count).empty()) || ...);
+    return pattern;
+}
+
+
 export bool __cdecl ReturnTrue() {
     return true;
 }

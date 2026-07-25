@@ -495,7 +495,8 @@ public:
     InGameConfig() {
         MixFix::onAttach() += []() {
             CIniReader ini;
-
+            if (ini.ReadInteger("Misc", "InGameConfig", 1) == 0)
+                return;
                 auto pattern = hook::pattern("40 53 55 56 57 41 54 41 56 41 57 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 84 24 ? ? ? ? 48 8B AC 24");
                 if (!pattern.empty())
                     lua_load_dynamic_script_buffer_hook = safetyhook::create_inline(pattern.get_first(), lua_load_dynamic_script_buffer);
@@ -508,7 +509,7 @@ public:
                     Memory::VP::ReadCall(pattern.get_first(-0xF), lua_gettopG);
                     printf("lua_gettopG addr %p\n", lua_gettopG);
 
-                    pattern = hook::pattern("E8 ? ? ? ? 41 8B 46 ? 48 8B CF");
+                    pattern = find_pattern("E8 ? ? ? ? 41 8B 46 ? 48 8B CF","E8 ? ? ? ? 41 8B C5 0F 57 C9");
                     Memory::VP::ReadCall(pattern.get_first(), lua_pushnumberG);
                     printf("lua_pushnumberG addr %p\n", lua_pushnumberG);
                 }
