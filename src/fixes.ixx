@@ -76,12 +76,64 @@ void __fastcall particle_unk3(uintptr_t ecx, void*)
 }
 #endif
 
+#if SRTTR
+// Hides the "slow connection" HUD warning (UI element "hud_connection_warning").
+//
+// How it works:
+//  - the game keeps every UI element in a linked list; an element is drawn only while its
+//    "active" byte (element + 0x5F3) is non-zero.
+//  - the function that draws all active elements is hooked, and right before it runs we look up
+//    "hud_connection_warning" by name (using the game's own lookup function) and clear that byte.
+//    The game can switch the element back on at any time, we just switch it off again every frame.
+namespace hud_connection_warning_fix
+{
+	constexpr size_t UI_ELEMENT_ACTIVE_OFFSET = 0x5F3;
+
+	using FindUIElementByName_t = uint8_t* (__fastcall*)(const char* name);
+	FindUIElementByName_t FindUIElementByName = nullptr;
+	SafetyHookInline draw_ui_elements_h;
+
+	void __fastcall draw_ui_elements_hook()
+	{
+		if (FindUIElementByName)
+		{
+			if (uint8_t* element = FindUIElementByName("hud_connection_warning"))
+				element[UI_ELEMENT_ACTIVE_OFFSET] = 0;
+		}
+
+		draw_ui_elements_h.call();
+	}
+
+	void install()
+	{
+		// UI element lookup by name: returns UI element* or nullptr
+		auto find_element_pattern = hook::pattern("48 83 EC 28 48 85 C9 74 2D 33 D2 E8 ? ? ? ? 48 8B 0D ? ? ? ? 8B D0 48 8B C1 48 85 C9 74 15 39 90 C8 05 00 00");
+
+		// draws all active UI elements (reads the active byte at +0x5F3)
+		auto draw_pattern = hook::pattern("48 89 5C 24 08 57 48 81 EC 30 02 00 00 48 8B 05 ? ? ? ? 48 33 C4 48 89 84 24 20 02 00 00 48 8B 15 ? ? ? ? 33 DB 89 1D ? ? ? ? 48 8B C2 48 85 D2 74 1D 80 B8 F3 05 00 00 00");
+
+		if (find_element_pattern.size() != 1 || draw_pattern.size() != 1)
+		{
+			printf("[hud_connection_warning] patterns not found, option skipped\n");
+			return;
+		}
+
+		FindUIElementByName = reinterpret_cast<FindUIElementByName_t>(find_element_pattern.get_first(0));
+		draw_ui_elements_h = safetyhook::create_inline(draw_pattern.get_first(0), &draw_ui_elements_hook);
+	}
+}
+#endif
+
 
 class fixes {
 public:
 	fixes() {
 		MixFix::onAttach() += []() {
 			CIniReader ini;
+#if SRTTR
+			if (ini.ReadBoolean("HUD", "disable_hud_connection_warning", true))
+				hud_connection_warning_fix::install();
+#endif
 #if SRTT
 			// Motion blur fix, display.ini claims # MotionBlur can override motion blur off (even when post process detail is up.)
 			// This was incorrect, it turned motion blur off for a single frame before the post process sets it back to true!
