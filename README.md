@@ -15,4 +15,5 @@ Currently features:
 - Uncap FPS
 - Fixed a bug where the INI setting `MotionBlur` in display.ini would get set to true when post process detail is up, despite the config saying it wouldn't do that (it should actually work now) (SRTT only)
 - Disable My Steelport Service connection (SRTT only)
+- Hide the "slow connection" HUD warning, INI option `[HUD] disable_hud_connection_warning` (SRTTR only)
 -  Better loose files support (SRTTR only) can load lua files for example.
